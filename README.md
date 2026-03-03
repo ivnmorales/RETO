@@ -1,21 +1,24 @@
-Reto de Refactorización: Operación Tienda D1 (High Cohesion + ISP)
+--Reto de Refactorización: Operación Tienda D1 (High Cohesion + ISP)
 
 Tienes un sistema interno de una tienda tipo D1. Al inicio era una tienda pequeña y una persona hacía de todo, por eso se creó una sola interfaz con todo mezclado. Hoy la tienda creció y ya existen roles separados: caja, bodega y soporte. El sistema funciona, pero el diseño está mal para escalar.
 
-Estado actual (ANTES)
+--El estado actual (ANTES)
 
-Problemas claros:
+El código de esta carpeta (reto) presenta problemas de diseño claros:
 
-Interfaz demasiado grande (ISP roto)
-Caja, bodega y soporte dependen del mismo contrato, aunque cada rol usa solo una parte.
+Interfaz gigante (ISP roto)
+Existe una sola interfaz con funciones de cajas, bodega, compras y servicio al cliente. Todos los roles dependen del mismo contrato, aunque no usen todo.
 
-Clase central con demasiadas responsabilidades (baja cohesión)
-Una sola clase implementa todo: ventas, inventario y reclamos.
+Clase “Dios” (baja cohesión)
+Una sola clase implementa todo: ventas, inventario, facturación, devoluciones, reclamos, reportes. Tiene demasiadas responsabilidades y demasiadas razones para cambiar.
 
 Cambios con efecto dominó
-Cambiar algo de inventario puede afectar caja, porque todo pasa por el mismo sistema.
+Un ajuste en devoluciones o facturación obliga a tocar el mismo núcleo que usa caja y bodega, aumentando el riesgo de romper cosas.
 
-Objetivo del reto
+Escalabilidad organizacional pobre
+En la vida real D1 tiene roles separados (cajero, supervisor, bodega, soporte). Aquí todos quedan amarrados al mismo sistema.
+
+--Objetivo del reto
 
 Refactoriza para cumplir:
 
